@@ -1,0 +1,67 @@
+.headerContainer {
+  position: sticky;
+  top: 0;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 30rem;
+
+  padding: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  z-index: 1;
+}
+
+.topContent {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+
+  h1 {
+    font-style: italic;
+
+    padding: 0 0.5rem;
+    border: 0.2rem solid var(--gray-900);
+    border-radius: 0.5rem;
+    box-shadow: 3px 3px 5px var(--gray-900);
+    strong {
+      font-style: normal;
+      color: var(--green-500);
+    }
+  }
+
+  p {
+    cursor: pointer;
+  }
+}
+
+.infoContent {
+  padding: 1rem;
+  background-image: linear-gradient(to right, #00000050, transparent);
+  border-radius: 1rem;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: var(--gray-50);
+    text-decoration: none;
+    transition: 2s;
+
+    &:hover {
+      color: var(--gray-200);
+    }
+  }
+}
