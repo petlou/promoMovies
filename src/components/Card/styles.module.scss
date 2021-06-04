@@ -1,18 +1,8 @@
 .cardContainer {
+  width: 12.5rem;
+
   position: relative;
 
-  background-color: blue;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  width: 12.5rem;
-  height: 18.75rem;
-
-  border-radius: 0.5rem;
-
-  cursor: pointer;
-  
   transition-property: transform;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
@@ -21,12 +11,7 @@
   -webkit-transition-duration: 0.5s;
   -webkit-transition-timing-function: ease-in-out;
 
-  box-shadow: 3px 3px 5px black;
-
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  cursor: pointer;
 
   span {
     position: absolute;
@@ -44,5 +29,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  } 
+  
+  .posterMovie {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    height: 18.75rem;
+    
+    border-radius: 0.5rem;
+    box-shadow: 3px 3px 5px black;
+  }
+
+  h3 {
+    margin-top: 0.8rem;
+    text-align: center;
+  }
+
+  &:hover {
+    transform: scale(1.08);
   }
 }

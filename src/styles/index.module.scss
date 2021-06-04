@@ -1,0 +1,49 @@
+.cardContainer {
+  position: relative;
+
+  height: 85vh;
+
+  .bodyContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.5rem;
+
+    height: 100%;
+  
+    padding: 2rem 0;
+      
+    overflow-y: auto;
+  
+    &::-webkit-scrollbar{
+      width: 18px;
+      height: 18px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border: 0.2rem solid rgba(0, 0, 0, 0);
+      background-clip: padding-box;
+      border-radius: 1rem;
+      -webkit-border-radius: 1rem;
+      background-color: rgba(255, 255, 255, 0.15);
+      box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+      -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+    }
+    &::-webkit-scrollbar-button {
+      width: 0.5rem;
+      height: 0.5rem;    
+    }
+    &::-webkit-scrollbar-corner {
+      background-color: transparent
+    }
+  }
+  
+  .loading {
+    position: sticky;
+    bottom: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+

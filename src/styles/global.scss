@@ -41,9 +41,13 @@ body {
   justify-content: center;
 }
 
-body, input, textarea, button {
+body, input, textarea, button, a {
   font: 500 1rem Inter, sans-serif;
   color: var(--gray-50);
+}
+
+a {
+  text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -1,0 +1,15 @@
+.footerContainer {
+  height: 5vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--gray-800);
+
+  span {
+    strong {
+      font-style: italic;
+    }
+  }
+}
