@@ -7,7 +7,7 @@ export function Header() {
     <header className={styles.headerContainer}>
       <div className={styles.topContent}>
         <h1>Promo<strong>MOVIES</strong></h1>
-        <p>en-US</p>
+        {/* <p>en-US</p> */}
       </div>
     </header>
   )
