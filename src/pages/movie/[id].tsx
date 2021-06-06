@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import { api } from '../../services/api';
 
@@ -32,15 +33,14 @@ export default function Movie(props: IProps) {
   const router = useRouter();
   const [movie, setMovie] = useState(props.movie)
 
-  function goBack() {
-    router.push('/')
-  }
   return (
     <>
       <div className={styles.bodyContainer} style={{backgroundImage: `url('${process.env.imageUrl}original/${movie.backdrop_path}')`}}>
         <h1>{movie.original_title}</h1>
         <span>{JSON.stringify(movie)}</span>
-        <button onClick={goBack}>Back</button>
+        <Link href={'/'}>
+          <button>Back</button>
+        </Link>
       </div>
     </>
   )

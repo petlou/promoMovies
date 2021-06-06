@@ -2,26 +2,23 @@
   position: sticky;
   top: 0;
 
-  background-color: var(--gray-800);
-  height: 10vh;
+  background-color: var(--purple-800);
+  height: 8vh;
 
   padding: 1.5rem;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 
   z-index: 1;
+
+  box-shadow: inset 0px -5px 15px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0px -5px 15px rgba(0, 0, 0, 0.5);
 }
 
-.topContent {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-
-  margin-bottom: 2rem;
-
+.logoContent {
   h1 {
     font-style: italic;
 
@@ -33,33 +30,9 @@
       font-style: normal;
       color: var(--green-500);
     }
-  }
 
-  p {
-    cursor: pointer;
-  }
-}
-
-.infoContent {
-  padding: 1rem;
-  background-image: linear-gradient(to right, #00000050, transparent);
-  border-radius: 1rem;
-
-  h2 {
-    margin-bottom: 1rem;
-  }
-
-  p {
-    margin-bottom: 0.5rem;
-  }
-
-  a {
-    color: var(--gray-50);
-    text-decoration: none;
-    transition: 2s;
-
-    &:hover {
-      color: var(--gray-200);
+    @media (max-height: 750px) {
+      font-size: 1.5rem;
     }
   }
 }

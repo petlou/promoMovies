@@ -1,12 +1,12 @@
 import { GetStaticProps } from 'next';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
 
 import { api } from '../services/api';
-import { Header } from '../components/Header';
-import { Card } from '../components/Card';
-import { Footer } from '../components/Footer';
 import InfiniteScroll from '../utils/infiniteScroll';
+import { MovieContext } from '../contexts/MovieContext';
+
+import { Card } from '../components/Card';
 
 import styles from '../styles/index.module.scss';
 
@@ -34,22 +34,27 @@ interface IFilter {
 }
 
 export default function Home(props: IProps) {
+  const {
+    allMovies,
+    filterGenre,
+    handleAllMovies,
+    handleFilterGenre
+  } = useContext(MovieContext);
+
   const [page, setPage] = useState(1);
   const [language, setLanguage] = useState('en-US');
   const [loading, setLoading] = useState(false);
   const [endScroll, setEndScroll] = useState(false);
   const [movies, setMovies] = useState<IMovies[]>(props.movies);
-  const [allMovies, setAllMovies] = useState<IMovies[]>(props.movies);
-  const [filterMovies, setFilterMovies] = useState<IMovies[]>([]);
-  const [filter, setFilter] = useState<IFilter[]>(props.filter);
-
-  // useEffect(() => {
-  //   setEndScroll(loading);
-  // }, [loading])
+  
+  useEffect(() => {
+    setLoading(true);
+    filterGenre.length <= 0 && handleFilterGenre(props.filter);
+    setShowMovies();
+    setLoading(false);
+  }, [])
 
   async function getMore() {
-    console.log('MOVIES => ', movies)
-    console.log('PAGE => ', page)
     if (page === props.total_pages) {
       setEndScroll(true);
       return;
@@ -71,13 +76,13 @@ export default function Home(props: IProps) {
       });
       
       const newList: IMovies[] = data.results;
-      const oldList: IMovies[] = allMovies;
+      const oldList: IMovies[] = allMovies.length > 0 ? allMovies : movies;
 
       newList.forEach((element: IMovies) => {
         oldList.push(element);
       });
 
-      setAllMovies(oldList);
+      handleAllMovies(oldList);
       setPage(nextPage);
 
       setShowMovies();
@@ -93,7 +98,7 @@ export default function Home(props: IProps) {
     setLoading(true);
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    let activeFilter = filter.map(el => {
+    const activeFilter = filterGenre.map(el => {
       if(el.id === id) {
         el.active = el.active ? false : true
       }
@@ -101,7 +106,26 @@ export default function Home(props: IProps) {
       return el;
     });
 
-    setFilter(activeFilter);
+    handleFilterGenre(activeFilter);
+
+    setShowMovies();
+
+    setLoading(false);
+  }
+
+  function removeFilter() {
+    setLoading(true);
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    const activeFilter = filterGenre.map(el => {
+      if (el.active) {
+        el.active = false;
+      }
+
+      return el;
+    });
+
+    handleFilterGenre(activeFilter);
 
     setShowMovies();
 
@@ -109,12 +133,10 @@ export default function Home(props: IProps) {
   }
 
   function setShowMovies() {
-    const activeFilters = filter.filter(el => el.active);
+    const activeFilters = filterGenre.filter(el => el.active);
     let listMovies: IMovies[] = [];
 
     if (activeFilters.length > 0) {
-      //listMovies = filterMovies;
-
       for (const filter of activeFilters) {
         const arrayMovieFilter = allMovies.filter(movie => movie.genre_ids.find(el => el === filter.id));
 
@@ -134,10 +156,7 @@ export default function Home(props: IProps) {
         }
 
         return 0;
-      })
-
-
-      setFilterMovies(listMovies);
+      });
     } else {
       listMovies = allMovies;
     }
@@ -147,11 +166,9 @@ export default function Home(props: IProps) {
 
   return (
     <>
-      <Header />
-      
       <div className={styles.cardContainer}>
         <div className={styles.filterContainer}>
-          {filter.map(filter => {
+          {filterGenre.map(filter => {
             return (
               <button
                 key={filter.id}
@@ -162,6 +179,7 @@ export default function Home(props: IProps) {
               </button>
             )
           })}
+          <button className={styles.clearFilter} onClick={removeFilter}>Clear All</button>
         </div>
         <div className={styles.bodyContainer} id="CardContainer">
           {movies.map(movie => {
@@ -173,8 +191,6 @@ export default function Home(props: IProps) {
         </div>
         {loading && <ReactLoading className={styles.loading} type={"spinningBubbles"} color={"#9F75FF"} height={'3rem'} width={'3rem'} />}
       </div>
-      
-      <Footer />
     </>  
   )
 }
