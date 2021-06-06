@@ -11,9 +11,11 @@ import styles from '../styles/app.module.scss';
 function MyApp({ Component, pageProps }) {
   const [allMovies, setAllMovies] = useState([]);
   const [filterGenre, setFilterGenre] = useState([]);
+  const [page, setPage] = useState(1);
 
-  function handleAllMovies(movies) {
+  function handleAllMovies(movies, page) {
     setAllMovies(movies);
+    setPage(page);
   }
 
   function handleFilterGenre(filters) {
@@ -25,6 +27,7 @@ function MyApp({ Component, pageProps }) {
       value={{
         allMovies,
         filterGenre,
+        page,
         handleAllMovies,
         handleFilterGenre
       }}

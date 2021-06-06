@@ -1,10 +1,147 @@
 .bodyContainer {
   width: 100vw;
-  height: 100vh;
+  height: 88vh;
 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  .imageBackground {
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
 
-  padding: 5rem;
+    width: 100%;
+    height: 60%;
+  }
+
+  .content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 40%;
+
+    padding: 1rem 5rem 2rem 20rem;
+
+    .firstLine {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      h1 {
+        text-shadow: 3px 3px 5px black;
+      }
+
+      p {
+        flex: 1;
+        margin-left: 0.5rem;
+
+        font-size: 0.8rem;
+      }
+
+      button {
+        width: fit-content;
+        height: fit-content;
+
+        padding: 0.15rem 0.5rem;
+        border-radius: 1rem;
+
+        color: #fff;
+        background-color: var(--purple-800);        
+      }
+    }
+
+    .secondLine {
+      display: flex;
+      align-items: baseline;
+
+      h3 {
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        margin-left: 1rem;
+      }
+    }
+
+    .genresContent {
+      span {
+        font-size: 0.8rem;
+        box-sizing: border-box;
+        margin-right: 0.5rem;
+        padding: 0.25rem 1rem;
+  
+        border-radius: 1rem;
+        border: 0.15rem solid var(--gray-200);
+      }
+    }
+
+    p {
+      margin-top: 1rem;
+      text-align: justify;
+    }
+
+    .posterContent {
+      position: absolute;
+      top: -3rem;
+      left: 5rem;
+      
+      width: 12.5rem;
+      height: 18.75rem;
+
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      border-radius: 0.5rem;
+      box-shadow: 3px 3px 5px black;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .content { 
+      padding: 1rem 3rem 2rem 18rem;      
+  
+      .posterContent {
+        left: 3rem;
+      }
+    }
+  }
+
+  @media (max-width: 750px) {
+    .imageBackground {
+      height: 45%;
+    }
+    .content { 
+      height: 55%;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .content { 
+      padding: 1rem 3rem 2rem 3rem;
+      
+      .posterContent {
+        display: none;
+      }
+    }  
+  }
+
+  @media (max-height: 750px) {
+    .imageBackground {
+      height: 55%;
+    }
+    .content { 
+      height: 45%;
+    }
+  }
+
+  @media (max-height: 675px) {
+    .imageBackground {
+      height: 50%;
+    }
+    .content { 
+      height: 50%;
+    }
+  }
 }

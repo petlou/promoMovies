@@ -49,6 +49,8 @@ body, input, textarea, a {
 button {
   font: 0.8rem Lexend, sans-serif;
   color: var(--gray-900);
+  border: none;
+  box-shadow: none;
 }
 
 a {

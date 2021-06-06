@@ -13,7 +13,7 @@ interface IProps {
 interface IMovie {
   adult: boolean;
   backdrop_path: string;
-  genres: string[];
+  genres: IGenre[];
   homepage: string;
   id: number;
   original_language: string;
@@ -29,18 +29,42 @@ interface IMovie {
   vote_count: number;
 }
 
+interface IGenre {
+  id: number;
+  name: string;
+}
+
 export default function Movie(props: IProps) {
   const router = useRouter();
   const [movie, setMovie] = useState(props.movie)
 
   return (
     <>
-      <div className={styles.bodyContainer} style={{backgroundImage: `url('${process.env.imageUrl}original/${movie.backdrop_path}')`}}>
-        <h1>{movie.original_title}</h1>
-        <span>{JSON.stringify(movie)}</span>
-        <Link href={'/'}>
-          <button>Back</button>
-        </Link>
+      <div className={styles.bodyContainer}>
+        <div className={styles.imageBackground} style={{backgroundImage: `url('${process.env.imageUrl}original/${movie.backdrop_path}')`}}/>
+        <div className={styles.content}>
+          <div className={styles.posterContent} style={{backgroundImage: `url('${process.env.imageUrl}w500/${movie.poster_path}')`}}/>
+          <div className={styles.firstLine}>
+            <h1>{movie.title}</h1>
+            <p>{movie.adult ? '(adult)' : ''}</p>
+            <Link href={'/'}>
+              <button>Back</button>
+            </Link>
+          </div>
+          <div className={styles.secondLine}>
+            <h3>{movie.original_title}</h3>
+            <p>{movie.release_date}</p>
+          </div>
+          
+          <div className={styles.genresContent}>
+            {movie.genres.map(genre => {
+              return (
+                <span key={genre.id}>{genre.name}</span>
+              )
+            })}
+          </div>
+          <p>{movie.overview}</p>
+        </div>
       </div>
     </>
   )

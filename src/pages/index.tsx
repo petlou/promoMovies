@@ -37,11 +37,11 @@ export default function Home(props: IProps) {
   const {
     allMovies,
     filterGenre,
+    page,
     handleAllMovies,
-    handleFilterGenre
+    handleFilterGenre,
   } = useContext(MovieContext);
 
-  const [page, setPage] = useState(1);
   const [language, setLanguage] = useState('en-US');
   const [loading, setLoading] = useState(false);
   const [endScroll, setEndScroll] = useState(false);
@@ -61,6 +61,7 @@ export default function Home(props: IProps) {
     };
 
     setLoading(true);
+
     const nextPage = page + 1;
 
     // await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -82,8 +83,7 @@ export default function Home(props: IProps) {
         oldList.push(element);
       });
 
-      handleAllMovies(oldList);
-      setPage(nextPage);
+      handleAllMovies(oldList, nextPage);
 
       setShowMovies();
 

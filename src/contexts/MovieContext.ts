@@ -3,7 +3,8 @@ import { createContext } from 'react';
 interface IMovieContextData {
   allMovies: IMovies[];
   filterGenre?: IFilter[];
-  handleAllMovies: (movies: IMovies[]) => void;
+  page: number;
+  handleAllMovies: (movies: IMovies[], page: number) => void;
   handleFilterGenre: (filters: IFilter[]) => void;
 }
 
