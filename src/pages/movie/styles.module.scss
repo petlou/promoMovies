@@ -61,14 +61,20 @@
       
       p {
         margin-left: 1rem;
+        min-width: fit-content;
       }
     }
 
     .genresContent {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
       span {
         font-size: 0.8rem;
         box-sizing: border-box;
-        margin-right: 0.5rem;
+        // margin-right: 0.5rem;
         padding: 0.25rem 1rem;
   
         border-radius: 1rem;
@@ -120,6 +126,8 @@
   @media (max-width: 750px) {
     .content { 
       padding: 1rem 3rem 2rem 3rem;
+
+      overflow-y: auto;
       
       .posterContent {
         display: none;
@@ -138,10 +146,10 @@
 
   @media (max-height: 675px) {
     .imageBackground {
-      height: 50%;
+      height: 40%;
     }
     .content { 
-      height: 50%;
+      height: 60%;
     }
   }
 }
